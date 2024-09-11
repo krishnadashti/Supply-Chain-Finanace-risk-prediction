@@ -1,0 +1,228 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.ribbon {
+    background-color: #333; /* change to your preferred color */
+    color: #fff; /* change to your preferred color */
+    padding: 10px 0;
+    text-align: center;
+}
+
+.ribbon h1 {
+    margin: 0;
+    font-size: 1.5em; /* adjust size as needed */
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+    background-color: #fbf0d4;
+}
+
+
+h2{
+    font-size: 30px;
+    color: rgb(22, 16, 45);
+    font-weight: 600;
+    margin-bottom: 5px;
+    text-align: center;
+}
+.contact-container{
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    height: auto;
+}
+
+.contact-left{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    background-color: #07090a25;
+    gap: 20px;
+    border: 1px solid #000;
+    border-radius: 30px;
+    padding: 50px;
+    width: 600px;
+}
+
+.contact-left-title h2{
+    font-size: 30px;
+    color: rgb(22, 16, 45);
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+.contact-left-title hr{
+    height: 5px;
+    background-color: #232323;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.num-inputs{
+    width: 300px;
+    height: 35px;
+    border:none;
+    outline: none;
+    padding-left: 25px;
+    font-weight: 500;
+    color: #232323;
+    border-radius: 50px;
+    display: inline-block;
+}
+
+.bool-input{
+    width: 50px;
+    height: 50px;
+    border:none;
+    outline: none;
+    padding-left: 25px;
+    font-weight: 500;
+    font-size: 50px;
+    color: #232323;
+    border-radius: 50px;
+    display: inline-block;
+}
+
+.button-input{
+    width: 100px;
+    height: 35px;
+    border:none;
+    outline: none;
+    font-weight: 500;
+    color: #232323;
+    border-radius: 50px;
+    background-color: #232323;
+    color: white;
+    cursor: pointer;
+}
+
+.sr-only {
+    /* Hide the real meter element */
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+  }
+  
+  .PredictRisk{
+  background-color: #3366ff;
+  color: black;
+  font-weight: 100;
+  align-items: center;
+  font-size: 16px;
+  border-radius: 10px;
+  }
+  
+  .dashboard-meter__wrapper {
+    width: 420px;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    color: #58585A;
+    text-transform: uppercase;
+  }
+  .dashboard-meter__container {
+    position: relative;
+    height: 186px;
+    width: 390px;
+    overflow: hidden;
+  
+  }
+  
+  .dashboard-meter {
+    position: absolute;
+    top: 10%;
+    padding-bottom: 100%; /* 1:1 aspect ratio */
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    background-image: linear-gradient(90deg, rgb(27, 249, 71) 0%, rgba(253,203,75,1) 52%, rgb(245, 39, 16) 100%);
+    background-size: cover;
+  }
+  .dashboard-meter:before {
+      content: ' ';
+      display: block;
+      height: 80%;
+      width: 80%;
+      position: absolute;
+      border-radius: 50%;
+      background: white;
+      top: 10%;
+      left: 10%;
+  
+  }
+  
+  .dashboard-meter__dial {
+    position: absolute;
+    bottom: -50px;
+    left: calc(50% - 50px);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    box-sizing: border-box;
+  /*   border: 30px solid #191E3A; */
+    background-image: linear-gradient(90deg, #282F60 0%, #282F60 50%, rgba(25,30,58,1) 50%);;
+    overflow: visible;
+    transform: rotateZ(calc(var(--turn) * .05turn - .25turn));
+    transition: all .2s ease;
+  }
+  .dashboard-meter__dial:before,
+  .dashboard-meter__dial:after{
+    position: absolute;
+    z-index: 0;
+    top: -40px;
+    content: ' ';
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+  }
+  .dashboard-meter__dial:before {
+    border-width: 0 30px 50px 0px;
+    border-color: transparent transparent #191e3a transparent;
+    left: 50%;
+  }
+  .dashboard-meter__dial:after {
+    border-width: 0 0 50px 30px;
+    border-color: transparent transparent #282F60 transparent;
+    right: 50%;
+  }
+  
+  .dashboard-meter__dial-center {
+    position: absolute;
+    z-index: 1;
+    left: calc(50% - 20px);
+    top: calc(50% - 20px);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #7083BD;
+  }
+  /* TODO: make this scale down in size */
+  
+  meter[value="1"] ~ .dashboard-meter__container { --turn: 1 }
+  meter[value="2"] ~ .dashboard-meter__container { --turn: 2 }
+  meter[value="3"] ~ .dashboard-meter__container { --turn: 3 }
+  meter[value="4"] ~ .dashboard-meter__container { --turn: 4 }
+  meter[value="5"] ~ .dashboard-meter__container { --turn: 5 }
+  meter[value="6"] ~ .dashboard-meter__container { --turn: 6 }
+  meter[value="7"] ~ .dashboard-meter__container { --turn: 7 }
+  meter[value="8"] ~ .dashboard-meter__container { --turn: 8 }
+  meter[value="9"] ~ .dashboard-meter__container { --turn: 9 }
+  
+  .dashboard-meter__labels {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    
+  }

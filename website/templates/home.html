@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supply Chain Risk Prediction</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="ribbon">
+        <h1>Supply Chain Risk Prediction</h1>
+    </div>
+    <br>
+    <h2>Find the Risk that your Company imposes on Supply Chain</h2><br>
+    <div class="contact-container">
+        <form action="/predict" method="post" class="contact-left">
+            <div class="contact-left-title">
+                </u><h2>Enter Details of Transactions</h2>
+                <hr>
+            </div>
+            <input type="text" id="in1" name="in1" placeholder="Average Time to Pay" class="num-inputs">
+            <input type="text" id="in2" name="in2" placeholder="% Invoices paid between 31 and 60 days" class="num-inputs">
+            <input type="text" id="in3" name="in3" placeholder="Shortest (or only) standard payment period" class="num-inputs">
+            <input type="text" id="in4" name="in4" placeholder="Longest standard payment period" class="num-inputs">
+            <input type="text" id="in5" name="in5" placeholder="Maximum contractual payment period" class="num-inputs">
+            <div class="bool-inputs">
+                <input type="checkbox" id="cb1" name="cb1">
+                <label for="cb1">Payments made in the reporting period?</label>
+            </div>
+            <div class="bool-inputs">
+                <input type="checkbox" id="cb2" name="cb2">
+                <label for="cb2">Payment terms have changed?</label>
+            </div>
+            <div class="bool-inputs">
+                <input type="checkbox" id="cb3" name="cb3">
+                <label for="cb3">Participates in payment codes?</label>
+            </div>
+            <div class="bool-inputs">
+                <input type="checkbox" id="cb4" name="cb4">
+                <label for="cb4">E-Invoicing offered?</label>
+            </div>
+            <div class="bool-inputs">
+                <input type="checkbox" id="cb5" name="cb5">
+                <label for="cb5">Supply-chain financing offered?</label>
+            </div>
+            <div class="bool-inputs">
+                <input type="checkbox" id="cb6" name="cb6">
+                <label for="cb6">Charges have been made for remaining on supplier list?</label>
+            </div>
+            <button type="submit" class="button-input" onclick="calculateAndDisplayRisk()">
+                Predict Risk
+            </button>
+        </form>
+        <div class="contact-right">
+            <h2>Your Company's Risk</h2>
+            <div class="meter"></div>
+            <div class="dashboard-meter__wrapper">
+                  <meter id="risk-meter" class="dashboard-meter sr-only" min="0" max="100" value="50"></meter>
+                  <div class="dashboard-meter__container">
+                    <div class="dashboard-meter">
+        
+                    </div>
+                    <div class="dashboard-meter__dial" id="pin">
+                      <div class="dashboard-meter__dial-center"></div>
+                    </div>
+                  </div>
+                  <label for="risk-meter" class="dashboard-meter__labels">
+                    <span class="sr-only">Risk Level</span>
+                    <span aria-hidden="true">Low Risk</span>
+                    <span aria-hidden="true">High Risk</span>
+                  </label>
+                  <b>{{ prediction }}%</b>
+            </div>
+        </div>    
+    </div>
+
+    <script>
+        function updateMeterPosition() {
+            const pin = document.getElementById("pin");
+
+            // Get the prediction from the Flask server
+            const prediction = "{{ prediction }}";
+
+            // Map the prediction value to a range between -90 and 90 (the range of the rotation)
+            const newPosition = (prediction - 50) * 1.8;
+
+            // Set the new position of the pin
+            pin.style.transform = `rotate(${newPosition}deg)`;
+        }
+
+        // Call updateMeterPosition when the page loads
+        window.onload = updateMeterPosition;
+    </script>
+    
+</body>
+</html>
